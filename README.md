@@ -37,6 +37,10 @@ Another interesting result from my project is TextBlob also gives a subjectivity
 2. Debug my implementation of TextBlob so it stops returning NaN values, and find out why it was giving sentiment scores further off from the scores I expected.
 
 Thank you for reading about my project!
+
+## Libraries Used
+NLTK, Pandas, TextBlob
+
 ## Sources
 1. Using Vader, TextBlob and Flair: https://medium.com/@b.terryjack/nlp-pre-trained-sentiment-analysis-1eb52a9d742c
 2. Performing stemming and removing stopwords: https://www.youtube.com/watch?v=1OMmbtVmmbg&list=PLZoTAELRMXVMdJ5sqbCK2LiM0HhQVWNzm&index=4
