@@ -33,7 +33,7 @@ Another interesting result from my project is TextBlob also gives a subjectivity
 3. TextBlob and Vader cannot assign a sentiment score to any word that is out of their vocabulary.
 4. TextBlob gave many NaN answers to the sentiment and subjectivity scores which indicates I'm using it incorrectly or it might not recognize any words in the sentences.
 ## Next Steps
-1. Learn how to use Flair and other algorithms that use a LSTM (long short-term memory
+1. Learn how to use Flair and other algorithms that use a LSTM (long short-term memory) neural network to identify more complex sentiment in natural language
 2. Debug my implementation of TextBlob so it stops returning NaN values, and find out why it was giving sentiment scores further off from the scores I expected.
 
 Thank you for reading about my project!
