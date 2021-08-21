@@ -1,32 +1,42 @@
-# ACM Research Coding Challenge (Fall 2021)
+# Ryan Sharp: ACM Research Coding Challenge (Fall 2021)
+## Introduction
+Hello and thank you for checking out my project!
+In this program, I use two pretrained sentiment analysis tools in Python to create sentiment scores of the given input. I then compare the two scores to each other and to what I would have expected. Let's dive in!
 
-## [](https://github.com/ACM-Research/Coding-Challenge-F21#no-collaboration-policy)No Collaboration Policy
+## Note Regarding my Submission
+I see that the "promptness of your submission" is considered when grading the assingment. I was on vacation when I received the invitation to complete this challenge, and I did not have access to my computer during the vacation. Now that I am back home, I can finally work on the project. Thank you for understanding!
 
-**You may not collaborate with anyone on this challenge.**  You  _are_  allowed to use Internet documentation. If you  _do_  use existing code (either from Github, Stack Overflow, or other sources),  **please cite your sources in the README**.
+##  How to Approach the Challenge
+The biggest challenge with performing sentiment analysis on this text is we have no labeled, or training, data. This means we don't have any data to teach our model what text is positive and what is negative. To evaluate this text, then, a good option is to import a tool that has been "pretrained" or already has a list of sentiment scores for certain words. These tools examine the sentiment score of each word in a text and then calculate the text's overall score. The tools I chose are Vader from NLTK and TextBlob.
 
-## [](https://github.com/ACM-Research/Coding-Challenge-F21#submission-procedure)Submission Procedure
+## About Vader and TextBlob
+These two pretrained tools utilize a "bag of words," which is simply a table of words and their sentiment score from -1 (most negative) to +1 (most positive). Using a bag of words for sentiment analysis is simple and can be effective, but it does not know the sentiment of words outside of its vocabulary. In addition, it can't take into account the sentiment created from long sequences of words. Vader can notice the sentiment in short sequences of words, such as "very pleasant" and "not pleasant," but it can't identify sarcasm or other elements of language that can only be seen by looking deeply into a long sequence of words.
+A pretrained tool that can identify sentiment in longer sequences of words is Flair, but I was having difficulties with successfully installing it. If I had the time to look deeper into this project, I would test out tools like Flair that use a LSTM (long short-term memory) neural network to detect more complext sentiment in natural language.
 
-Please follow the below instructions on how to submit your answers.
+## Preprocessing the Text
+Before we implement the tools Vader and TextBlob, I removed words known as "stopwords" that are used so often in language that they have no use for sentiment analysis. These are words such as "the," "a," "and," "is," and many more. The programmer can define his/her own list of stopwords to remove from the data, or he/she can use a previously created list of stopwords, which is what I did for this project. Removing these unnecessary words will make our data more concise and efficient, increasing the "usefulness per unit of data" that we will use for analysis.
+In addition to removing stopwords, I performed stemming on the remaining words. This means removing the last few characters of certain words to reduce them to their fundamental form. For example, the words "gone," "goes" and "going" reduce to "go." This further increases the simplicity and efficiency of our model.
+Now that useless words have been removed, and our words have been reduced to their fundamental forms, we are ready to use Vader and TextBlob for sentiment analysis.
 
-1.  Create a  **public**  fork of this repo and name it  `ACM-Research-Coding-Challenge-F21`. To fork this repo, click the button on the top right and click the "Fork" button.
+## Results of my Project
+**The overall sentiment score of the text is 0.9949, meaning extremely positive.** I calculated this score using Vader over TextBlob because TextBlob was not performing ideally (returning some NaN values), and the results that TextBlob did give for each sentence were much further off from the sentiment score I expected.
+**This contrasts from what I expected** because the first two paragraphs, especially the second, contained words that I would expect to pull the score further in the negative direction. The first paragraph contained aggressive words such as "stop," "watch out," and "dreary chaos." The second paragraph contained frightening words like "devil," "screamed" and "murderer." However, the last paragraph contains many positive words that brought up the score, such as "pleasing," "ingenious" and "excellent." Becuase the last paragraph is so long and full of positive words, it brought up the overall score.
+Another interesting result from my project is TextBlob also gives a subjectivity score, indicating how biased it thinks the text is. TextBlob gave the second paragraph a subjectivity score of 0.61, perhaps because of the amount of emotion and reactions described in that text.
 
-2.  Clone the fork of the repo to your computer using  `git clone [the URL of your clone]`. You may need to install Git for this (Google it).
+## Pros of my Analysis Method
+1. Removing the stopwords and performing the stemming makes our data more concise, efficient to use, and dense with usefulness.
+2. The tools Vader and TextBlob run very quickly because they do not implement a complex machine learning algorithm such as a neural network.
+3. Vader and TextBlob can be used on any sentence you wish to create. No "training data" or model building is necessary.
+## Cons of my Analysis Method
+1. Vader and TextBlob cannot identify complex sentiment in natural langauge that can only be found in long sequences of words, such as sarcasm.
+2. TextBlob cannot identify negations in language, such as "not good" or "won't hurt."
+3. TextBlob and Vader cannot assign a sentiment score to any word that is out of their vocabulary.
+4. TextBlob gave many NaN answers to the sentiment and subjectivity scores which indicates I'm using it incorrectly or it might not recognize any words in the sentences.
+## Next Steps
+1. Learn how to use Flair and other algorithms that use a LSTM (long short-term memory
+2. Debug my implementation of TextBlob so it stops returning NaN values, and find out why it was giving sentiment scores further off from the scores I expected.
 
-3.  Complete the Challenge based on the instructions below.
-
-4.  Submit your solution by filling out this [form](https://acmutd.typeform.com/to/zF1IcBGR).
-
-## Assessment Criteria 
-
-Submissions will be evaluated holistically and based on a combination of effort, validity of approach, analysis, adherence to the prompt, use of outside resources (encouraged), promptness of your submission, and other factors. Your approach and explanation (detailed below) is the most weighted criteria, and partial solutions are accepted. 
-
-## [](https://github.com/ACM-Research/Coding-Challenge-S21#question-one)Question One
-
-[Sentiment analysis](https://en.wikipedia.org/wiki/Sentiment_analysis) is a natural language processing technique that computes a sentiment score for a body of text. This sentiment score can quantify how positive, negative, or neutral the text is. The following dataset in  `input.txt`  contains a relatively large body of text.
-
-**Determine an overall sentiment score of the text in this file, explain what this score means, and contrast this score with what you expected.**  If your solution also provides different metrics about the text (magnitude, individual sentence score, etc.), feel free to add it to your explanation.   
-
-**You may use any programming language you feel most comfortable. We recommend Python because it is the easiest to implement. You're allowed to use any library/API you want to implement this**, just document which ones you used in this README file. Try to complete this as soon as possible as submissions are evaluated on a rolling basis.
-
-Regardless if you can or cannot answer the question, provide a short explanation of how you got your solution or how you think it can be solved in your README.md file. However, we highly recommend giving the challenge a try, you just might learn something new!
-
+Thank you for reading about my project!
+## Sources
+1. Using Vader, TextBlob and Flair: https://medium.com/@b.terryjack/nlp-pre-trained-sentiment-analysis-1eb52a9d742c
+2. Performing stemming and removing stopwords: https://www.youtube.com/watch?v=1OMmbtVmmbg&list=PLZoTAELRMXVMdJ5sqbCK2LiM0HhQVWNzm&index=4
