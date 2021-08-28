@@ -29,7 +29,7 @@ Another interesting result from my project is TextBlob also gives a subjectivity
 3. Vader and TextBlob can be used on any sentence you wish to create, without the need for "training data" or model building.
 ## Cons of my Analysis Method
 1. Vader and TextBlob cannot identify complex sentiment (such as sarcasm) in natural langauge that can only be found in long sequences of words.
-2. TextBlob cannot identify negations in language, such as "not good" or "won't hurt."
+2. TextBlob cannot identify negations in language, such as "not good" or "won't hurt," although Vader can.
 3. TextBlob and Vader cannot assign a sentiment score to any word that is out of their vocabulary.
 4. In my program, TextBlob gave many NaN answers to the sentiment and subjectivity scores, which indicates I'm using it incorrectly or it might not recognize any words in the sentences.
 ## Next Steps
