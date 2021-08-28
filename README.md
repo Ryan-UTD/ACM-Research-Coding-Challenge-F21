@@ -10,7 +10,7 @@ I see that the "promptness of your submission" is considered when grading the as
 The biggest challenge with performing sentiment analysis on this text is we have no labeled, or training, data. This means we don't have any data to teach our model what text is positive and what is negative. To evaluate this text, then, a good option is to import a tool that has been "pretrained" or already has a list of sentiment scores for certain words. These tools examine the sentiment score of each word in a text and then calculate the text's overall score. The tools I chose are Vader from NLTK and TextBlob.
 
 ## About Vader and TextBlob
-These two pretrained tools utilize a "bag of words," which is simply a table of words and their sentiment score from -1 (most negative) to +1 (most positive). Using a bag of words for sentiment analysis is simple and can be effective, but it does not know the sentiment of words outside of its vocabulary. In addition, it can't take into account the sentiment created from long sequences of words. Vader can notice the sentiment in short sequences of words, such as "very pleasant" and "not pleasant," but it can't identify sarcasm or other elements of language that can only be seen by looking deeply into a long sequence of words.
+These two pretrained tools have a table of predefined words and their sentiment score from -1 (most negative) to +1 (most positive). These tools then utilize a "bag of words" approach, meaning they turn the text into a vector, each dimension being the number of occurences of a certain word in the text. Using a bag of words for sentiment analysis is simple and can be effective, but it does not know the sentiment of words outside of its vocabulary. In addition, it can't take into account the sentiment created from long sequences of words. Vader can notice the sentiment in short sequences of words, such as "very pleasant" and "not pleasant," but it can't identify sarcasm or other elements of language that can only be seen by looking deeply into a long sequence of words.
 A pretrained tool that can identify sentiment in longer sequences of words is Flair, but I was having difficulties with successfully installing it. If I had the time to look deeper into this project, I would test out tools like Flair that use a LSTM (long short-term memory) neural network to detect more complext sentiment in natural language.
 
 ## Preprocessing the Text
@@ -24,14 +24,14 @@ Now that useless words have been removed, and our words have been reduced to the
 Another interesting result from my project is TextBlob also gives a subjectivity score, indicating how biased it thinks the text is. TextBlob gave the second paragraph a subjectivity score of 0.61, perhaps because of the amount of emotion and reactions described in that text.
 
 ## Pros of my Analysis Method
-1. Removing the stopwords and performing the stemming makes our data more concise, efficient to use, and dense with usefulness.
-2. The tools Vader and TextBlob run very quickly because they do not implement a complex machine learning algorithm such as a neural network.
-3. Vader and TextBlob can be used on any sentence you wish to create. No "training data" or model building is necessary.
+1. Removing the stopwords and performing the stemming makes our data more compact, efficient to use, and dense with usefulness.
+2. My program runs quickly because Vader and TextBlob do not implement a complex machine learning algorithm such as a neural network.
+3. Vader and TextBlob can be used on any sentence you wish to create, without the need for "training data" or model building.
 ## Cons of my Analysis Method
-1. Vader and TextBlob cannot identify complex sentiment in natural langauge that can only be found in long sequences of words, such as sarcasm.
+1. Vader and TextBlob cannot identify complex sentiment (such as sarcasm) in natural langauge that can only be found in long sequences of words.
 2. TextBlob cannot identify negations in language, such as "not good" or "won't hurt."
 3. TextBlob and Vader cannot assign a sentiment score to any word that is out of their vocabulary.
-4. TextBlob gave many NaN answers to the sentiment and subjectivity scores which indicates I'm using it incorrectly or it might not recognize any words in the sentences.
+4. In my program, TextBlob gave many NaN answers to the sentiment and subjectivity scores, which indicates I'm using it incorrectly or it might not recognize any words in the sentences.
 ## Next Steps
 1. Learn how to use Flair and other algorithms that use a LSTM (long short-term memory) neural network to identify more complex sentiment in natural language
 2. Debug my implementation of TextBlob so it stops returning NaN values, and find out why it was giving sentiment scores further off from the scores I expected.
